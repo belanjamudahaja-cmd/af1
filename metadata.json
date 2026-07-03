@@ -1,0 +1,6 @@
+{
+  "name": "Generator Skrip dan Prompt Iklan Video",
+  "description": "Aplikasi profesional untuk membuat 3 scene visual prompt AI dan teks ucapan video iklan berdasarkan referensi wajah model dan produk.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
