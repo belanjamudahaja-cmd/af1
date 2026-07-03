@@ -1,13 +1,255 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Studio - AI Ad Script Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-slate-100 font-sans pb-12">
 
+    <header class="max-w-7xl mx-auto px-4 pt-6 pb-2 flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 p-2.5 rounded-xl text-white shadow-lg shadow-indigo-500/30">
+                <i class="fa-solid fa-video text-xl"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg tracking-wide">Creative Studio <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full ml-2 border border-indigo-500/30">AI Ad Script</span></h1>
+                <p class="text-xs text-slate-400">Generator Skrip & Visual Iklan Konsisten</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <section class="lg:col-span-5 glass-panel rounded-2xl p-6 shadow-xl">
+            <h2 class="text-md font-semibold mb-6 flex items-center text-indigo-400"><i class="fa-solid fa-sliders mr-2"></i> KONFIGURASI KAMPANYE IKLAN</h2>
+            
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Gemini API Key <span class="text-rose-500">*</span></label>
+                    <input type="password" id="apiKey" class="w-full bg-slate-900/60 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 placeholder-slate-600" placeholder="Masukkan Gemini API Key Anda">
+                    <p class="text-[11px] text-slate-500 mt-1">Dapatkan gratis di Google AI Studio.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Nama Produk <span class="text-rose-500">*</span></label>
+                        <input type="text" id="productName" class="w-full bg-slate-900/60 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Misal: Safi Youth Gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Kategori Produk</label>
+                        <select id="productCategory" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <option>Skincare & Kecantikan</option>
+                            <option>Fashion & Pakaian</option>
+                            <option>Elektronik & Gadget</option>
+                            <option>Perlengkapan Rumah</option>
+                            <option>Makanan & Minuman</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Target Audiens</label>
+                        <input type="text" id="targetAudience" class="w-full bg-slate-900/60 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Misal: Wanita muda 18-30 thn">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Gaya/Tone Iklan</label>
+                        <select id="adStyle" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <option value="podcast">Gaya Bicara Podcast (Viral/Interaktif)</option>
+                            <option value="cinematic">Sinematik & Soft Elegant</option>
+                            <option value="hard-sell">Hard Sell / To The Point</option>
+                            <option value="review">Honest Review (Santai)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Detail Tambahan / Unique Selling Point (USP)</label>
+                    <textarea id="productUsp" rows="3" class="w-full bg-slate-900/60 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 placeholder-slate-600" placeholder="Tuliskan kelebihan produk, warna kemasan mencolok, bahan aktif, atau adegan tertentu yang diinginkan..."></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Foto Wajah Model (Referensi)</label>
+                        <div class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-xl p-4 text-center cursor-pointer transition relative bg-slate-900/30" onclick="document.getElementById('modelImg').click()">
+                            <input type="file" id="modelImg" accept="image/*" class="hidden" onchange="previewImage(this, 'modelPreview')">
+                            <div id="modelPreview" class="space-y-1 text-slate-400 text-xs">
+                                <i class="fa-regular fa-image text-xl text-indigo-400 mb-1"></i>
+                                <p class="font-medium">Pilih foto wajah</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Foto Produk</label>
+                        <div class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-xl p-4 text-center cursor-pointer transition relative bg-slate-900/30" onclick="document.getElementById('productImg').click()">
+                            <input type="file" id="productImg" accept="image/*" class="hidden" onchange="previewImage(this, 'productPreview')">
+                            <div id="productPreview" class="space-y-1 text-slate-400 text-xs">
+                                <i class="fa-solid fa-box text-xl text-indigo-400 mb-1"></i>
+                                <p class="font-medium">Pilih foto produk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generateBtn" onclick="generateScript()" class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/20 transition flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Generate Skrip & Prompt</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="lg:col-span-7 glass-panel rounded-2xl p-6 shadow-xl min-h-[500px] flex flex-col">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+                <h2 class="text-md font-semibold text-indigo-400 flex items-center"><i class="fa-solid fa-square-poll-horizontal mr-2"></i> HASIL GENERATOR</h2>
+                <button onclick="copyOutput()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center space-x-1.5 transition">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Salin Semua</span>
+                </button>
+            </div>
+
+            <div id="resultContainer" class="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <div id="emptyState" class="space-y-3 max-w-sm">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mx-auto text-slate-500 border border-slate-700 text-xl">
+                        <i class="fa-solid fa-clapperboard"></i>
+                    </div>
+                    <h3 class="font-medium text-sm text-slate-300">Belum Ada Skrip Yang Dihasilkan</h3>
+                    <p class="text-xs text-slate-400">Masukkan parameter kampanye di panel kiri, unggah gambar referensi, lalu tekan tombol Generate.</p>
+                </div>
+
+                <div id="loadingState" class="hidden space-y-4">
+                    <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <p class="text-xs text-indigo-300 font-medium tracking-wide">AI sedang menganalisis gambar & merancang materi video...</p>
+                </div>
+
+                <div id="outputText" class="hidden w-full text-left text-sm space-y-4 overflow-y-auto max-h-[600px] pr-2 text-slate-300 whitespace-pre-line">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Auto-save form data ke localStorage
+        const fields = ['apiKey', 'productName', 'productCategory', 'targetAudience', 'adStyle', 'productUsp'];
+        fields.forEach(field => {
+            const el = document.getElementById(field);
+            if(localStorage.getItem(field)) el.value = localStorage.getItem(field);
+            el.addEventListener('input', () => localStorage.setItem(field, el.value));
+        });
+
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" class="w-full h-16 object-cover rounded-lg border border-indigo-500/50">`;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        async function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        async function generateScript() {
+            const apiKey = document.getElementById('apiKey').value;
+            const productName = document.getElementById('productName').value;
+            
+            if (!apiKey || !productName) {
+                alert('Mohon isi Gemini API Key dan Nama Produk terlebih dahulu!');
+                return;
+            }
+
+            const emptyState = document.getElementById('emptyState');
+            const loadingState = document.getElementById('loadingState');
+            const outputText = document.getElementById('outputText');
+            const generateBtn = document.getElementById('generateBtn');
+
+            emptyState.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            outputText.classList.add('hidden');
+            generateBtn.disabled = true;
+            generateBtn.classList.add('opacity-50');
+
+            try {
+                let contents = [{
+                    role: "user",
+                    parts: [{
+                        text: `Tolong bertindak sebagai AI Generator Skrip dan Prompt Video Iklan Profesional. Buatkan 3 buah Scene Prompt visual detail untuk AI Image/Video Generator beserta Teks Ucapan (Voiceover) untuk masing-masing scene tersebut.
+                        
+                        DATA KAMPANYE:
+                        - Nama Produk: ${productName}
+                        - Kategori: ${document.getElementById('productCategory').value}
+                        - Target Audiens: ${document.getElementById('targetAudience').value || 'Umum'}
+                        - Gaya/Tone Video: ${document.getElementById('adStyle').value}
+                        - Detail Tambahan/USP: ${document.getElementById('productUsp').value || 'Tidak ada'}
+                        
+                        ATURAN KETAT:
+                        1. Konsistensi Wajah: Cermati dan kunci ciri fisik wajah model dari foto referensi yang saya kirimkan agar wajah model tetap konsisten di scene 1, 2, dan 3.
+                        2. Durasi & Teks: Durasi per scene disetel default 10 detik (total 3 scene = 30 detik). Tuliskan teks ucapan secara presisi (sekitar 25-30 kata per scene agar pas dengan durasi 10 detik kecepatan bicara normal). Teks ucapan harus dalam format yang mudah dibaca agar bisa diubah manual.
+                        3. Output wajib rapi menggunakan format penulisan terstruktur per-scene.`
+                    }]
+                }];
+
+                // Cek file gambar
+                const modelImg = document.getElementById('modelImg').files[0];
+                const productImg = document.getElementById('productImg').files[0];
+
+                if (modelImg) {
+                    const base64Model = await fileToBase64(modelImg);
+                    contents[0].parts.push({ inlineData: { mimeType: modelImg.type, data: base64Model } });
+                }
+                if (productImg) {
+                    const base64Product = await fileToBase64(productImg);
+                    contents[0].parts.push({ inlineData: { mimeType: productImg.type, data: base64Product } });
+                }
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: contents })
+                });
+
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    let textResult = data.candidates[0].content.parts[0].text;
+                    // Bersihkan format markdown tebal berlebih agar rapi di UI HTML
+                    outputText.innerText = textResult;
+                    loadingState.classList.add('hidden');
+                    outputText.classList.remove('hidden');
+                } else {
+                    throw new Error(data.error?.message || 'Gagal menghasilkan skrip.');
+                }
+
+            } catch (error) {
+                alert('Terjadi kesalahan: ' + error.message);
+                loadingState.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.classList.remove('opacity-50');
+            }
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('outputText').innerText;
+            if(!text) return alert('Belum ada teks untuk disalin.');
+            navigator.clipboard.writeText(text);
+            alert('Seluruh skrip berhasil disalin ke clipboard!');
+        }
+    </script>
+</body>
+</html>
